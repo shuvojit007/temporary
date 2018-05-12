@@ -31,8 +31,11 @@ const OrderSingle = async (ctx) => {
 
 const OrderCreate = async (ctx) => {
   // console.log(ctx.request.body);
+  const orderData = Object.assign({
+    author: ctx.state.user.uid
+  }, ctx.request.body);
   try {
-    OrderNew = await OrderCrud.create(ctx.request.body);
+    OrderNew = await OrderCrud.create(orderData);
   } catch (e) {
     ctx.throw(422, e.message);
   }  finally {

@@ -11,7 +11,11 @@ const OrderSchema = new mongoose.Schema({
   },
   file : [{
     type : String
-  }]
+  }], 
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'userModel'
+  },
 });
 
 OrderSchema.plugin(uniqueValidator);
